@@ -1,0 +1,55 @@
+<!-- accidentally deleted previous 2 commits...-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentificating...</title>
+  </head>
+  <body>
+    <section class="register" style="display: none">
+      <article class="register-motivation">
+        <h2 class="register-title">Sign up</h2>
+        <p class="register-paragraph">Y</p>
+      </article>
+      <form class="register-form">
+        <label for="register-username">USERNAME</label>
+        <input
+          class="register-username"
+          required
+          minlength="5"
+          maxlength="10"
+        />
+        <label for="register-password">PASSWORD</label>
+        <input
+          class="register-password"
+          required
+          minlength="5"
+          maxlength="15"
+        />
+        <label for="register-password__repeat">REPEAT PASSWORD</label>
+        <input class="register-password__repeat" required />
+        <button class="register-create" type="button" onclick="register()">
+          SIGN UP
+        </button>
+        <div class="register-errors"></div>
+      </form>
+    </section>
+    <section class="login" style="display: none">
+      <h2 class="login-title">Log in</h2>
+      <form class="login-form">
+        <label for="login-username">USERNAME</label>
+        <input class="login-username" required minlength="5" maxlength="10" />
+        <label for="login-password">PASSWORD</label>
+        <input class="login-password" required minlength="5" maxlength="10" />
+        <button class="login-create" type="button" onclick="login()">
+          LOG IN
+        </button>
+        <div class="login-errors"></div>
+      </form>
+    </section>
+    <script src="auth.js"></script>
+  </body>
+</html>

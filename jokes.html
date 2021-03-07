@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes</title>
+</head>
+<body>
+    <section class="joke">
+        <p class="joke-text"></p>
+        <button class="joke-next" onclick="nextJoke()">Next joke</button>
+        <button class="joke-save" onclick="">Save joke</button>
+    </section>
+    <section class="ratings" style="display: none">
+        <button class="rating-option" onclick="giveRatingAndSave(1)">1</button>
+        <button class="rating-option" onclick="giveRatingAndSave(2)">2</button>
+        <button class="rating-option" onclick="giveRatingAndSave(3)">3</button>
+        <button class="rating-option" onclick="giveRatingAndSave(4)">4</button>
+        <button class="rating-option" onclick="giveRatingAndSave(5)">5</button>
+        <button class="rating-option" onclick="giveRatingAndSave(6)">6</button>
+        <button class="rating-option" onclick="giveRatingAndSave(7)">7</button>
+        <button class="rating-option" onclick="giveRatingAndSave(8)">8</button>
+        <button class="rating-option" onclick="giveRatingAndSave(9)">9</button>
+        <button class="rating-option" onclick="giveRatingAndSave(10)">10</button>
+    </section>
+    <section class="stored__jokes"></section>
+    <script src="jokes.js"></script>
+</body>
+</html>
