@@ -1,53 +1,69 @@
-<!-- accidentally deleted previous 2 commits...-->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="auth.css" />
     <title>Authentificating...</title>
   </head>
   <body>
-    <section class="register" style="display: none">
-      <article class="register-motivation">
-        <h2 class="register-title">Sign up</h2>
-        <p class="register-paragraph">Y</p>
+    <section class="register form-wrap">
+      <article class="motivation">
+        <h2 class="motivation-title">Sign up</h2>
+        <p class="motivation-paragraph">
+          You need to have an account in order to see jokes.
+        </p>
       </article>
       <form class="register-form">
-        <label for="register-username">USERNAME</label>
-        <input
-          class="register-username"
-          required
-          minlength="5"
-          maxlength="10"
-        />
-        <label for="register-password">PASSWORD</label>
-        <input
-          class="register-password"
-          required
-          minlength="5"
-          maxlength="15"
-        />
-        <label for="register-password__repeat">REPEAT PASSWORD</label>
-        <input class="register-password__repeat" required />
-        <button class="register-create" type="button" onclick="register()">
+        <div class="form-inputs">
+          <div class="form-option">
+            <label for="register-username" class="form-label">USERNAME</label>
+            <input name="register-username" required minlength="5" maxlength="10" />
+          </div>
+          <div class="form-option">
+            <label for="register-password" class="form-label">PASSWORD</label>
+            <input
+              type="password"
+              name="register-password"
+              required
+              minlength="5"
+              maxlength="15"
+            />
+          </div>
+          <div class="form-option">
+            <label for="register-password__repeat" class="form-label"
+              >REPEAT PASSWORD</label
+            >
+            <input type="password" name="register-password__repeat" required />
+          </div>
+          <div class="form-errors" id="register-errors"></div>
+        </div>
+        <button class="form-button" type="button" onclick="register()">
           SIGN UP
         </button>
-        <div class="register-errors"></div>
       </form>
     </section>
-    <section class="login" style="display: none">
-      <h2 class="login-title">Log in</h2>
+    <section class="login form-wrap">
+      <article class="motivation">
+        <h2 class="motivation-title">Log in</h2>
+        <p class="motivation-paragraph">You need to log in before continuing.</p>
+      </article>
       <form class="login-form">
-        <label for="login-username">USERNAME</label>
-        <input class="login-username" required minlength="5" maxlength="10" />
-        <label for="login-password">PASSWORD</label>
-        <input class="login-password" required minlength="5" maxlength="10" />
-        <button class="login-create" type="button" onclick="login()">
+        <div class="form-options">
+          <div class="form-option">
+            <label for="login-username" class="form-label">USERNAME</label>
+            <input name="login-username" required minlength="5" maxlength="10" />
+          </div>
+          <div class="form-option">
+            <label for="login-password" class="form-label">PASSWORD</label>
+            <input type="password" name="login-password" required minlength="5" maxlength="10" />
+          </div>
+          <div class="form-errors" id="login-errors"></div>
+        </div>
+        <button class="form-button" type="button" onclick="login()">
           LOG IN
         </button>
-        <div class="login-errors"></div>
       </form>
     </section>
     <script src="auth.js"></script>

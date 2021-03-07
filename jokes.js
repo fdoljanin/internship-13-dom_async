@@ -1,5 +1,5 @@
-let storedJokes = JSON.parse(localStorage.getItem("jokes")) || [];
-if (storedJokes === null) localStorage.setItem("jokes", JSON.stringify(storedJokes));
+let storedJokes = JSON.parse(localStorage.getItem("jokes"));
+if (storedJokes === null) localStorage.setItem("jokes", JSON.stringify([]));
 
 function nextJoke() {
     fetch("https://icanhazdadjoke.com/",
@@ -18,6 +18,8 @@ function nextJoke() {
             console.log(err);
         })
 }
+
+nextJoke();
 
 function changeJoke(joke) {
     localStorage.setItem("currentJoke", JSON.stringify(joke));
