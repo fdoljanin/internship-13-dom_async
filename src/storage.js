@@ -1,9 +1,12 @@
 let storedJokes = JSON.parse(localStorage.getItem("jokes"));
-if (storedJokes === null) localStorage.setItem("jokes", JSON.stringify([]));
+if (storedJokes === null) {
+    storedJokes = []
+    localStorage.setItem("jokes", JSON.stringify(storedJokes))
+};
 
 function saveJoke(rating){
     let savedJoke = JSON.parse(localStorage.getItem("currentJoke"));
-    savedJoke.rating = rating;
+    savedJoke.rating = parseInt(rating);
 
     storedJokes.push(savedJoke);
     storedJokes.sort((x, y) => x.rating > y.rating ? 1 : -1);

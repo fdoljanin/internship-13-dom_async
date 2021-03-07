@@ -1,10 +1,15 @@
+if (JSON.parse(localStorage.getItem("logged")) !== true) {
+    location.replace("auth.html");
+} else {
+    nextJoke();
+}
+
+
 async function nextJoke() {
     let joke = await fetchJoke();
     localStorage.setItem("currentJoke", JSON.stringify(joke));
     document.querySelector(".joke-text").innerHTML = joke.joke;
 }
-
-nextJoke();
 
 function updateRating() {
     let rating = document.querySelector("input[name='rating']").value;
@@ -21,7 +26,7 @@ async function saveJokeAction() {
 
 function listSavedJokes() {
     let jokesContainer = document.querySelector(".stored__jokes-container");
-    jokesContainer.innerHTML="";
+    jokesContainer.innerHTML = "";
 
     for (joke of storedJokes) {
         let jokeArticle = createJokeArticle(joke);
@@ -34,17 +39,19 @@ async function removeJokeAction(event) {
     let userConfirmed = await confirmDeletePopup();
     if (!userConfirmed) return;
     removeJoke(jokeId);
-    document.querySelector('.'+event.target.classList[1]).style.display="none";
+    document.querySelector('.' + event.target.classList[1]).style.display = "none";
 }
 
 
-function logOff() {
+function logOut() {
     localStorage.clear();
+    location.replace('auth.html')
 }
 
-async function confirmDeletePopup(){
+async function confirmDeletePopup() {
     return new Promise((resolve, reject) => {
         showPopup(document.querySelector(".popup--deletion"));
+
         document.querySelector("#joke-confirm__deletion--popup").addEventListener("click", () => {
             hidePopup(document.querySelector(".popup--deletion"));
             resolve(true);
@@ -59,6 +66,7 @@ async function confirmDeletePopup(){
 
 async function getRating() {
     return new Promise((resolve, reject) => {
+        updateRating();
         showPopup(document.querySelector(".popup--rating"));
 
         document.querySelector("#joke-save--popup").addEventListener("click", () => {
