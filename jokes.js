@@ -7,6 +7,7 @@ if (JSON.parse(localStorage.getItem("logged")) !== true) {
 
 async function nextJoke() {
     let joke = await fetchJoke();
+    if (storedJokes.some(storedJoke => storedJoke.id === joke.id)) return nextJoke();
     localStorage.setItem("currentJoke", JSON.stringify(joke));
     document.querySelector(".joke-text").innerHTML = joke.joke;
 }

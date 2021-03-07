@@ -33,14 +33,14 @@ function register() {
     location.reload();
 }
 
-function login(){
+function login() {
     let userInfo = {};
     userInfo.username = document.querySelector("input[name='login-username']").value;
     userInfo.password = document.querySelector("input[name='login-password']").value;
 
     let user = JSON.parse(localStorage.getItem("user"));
 
-    if (userInfo.username!==user.username || userInfo.password!==user.password) {
+    if (userInfo.username !== user.username || userInfo.password !== user.password) {
         document.querySelector("#login-errors").innerHTML = "No such user found!";
         return;
     }

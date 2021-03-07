@@ -10,15 +10,15 @@ p {
 }
 
 .background__dim {
-    display: none;
-    position: fixed;
-    z-index: 2;
-    background: #000;
-    opacity: 0.6;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+  display: none;
+  position: fixed;
+  z-index: 2;
+  background: #000;
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 nav {
@@ -36,9 +36,11 @@ nav {
 nav > * {
   align-self: center;
 }
+
 .nav-list {
   display: flex;
 }
+
 .nav-element {
   margin: 0 20px;
 }
@@ -150,7 +152,7 @@ main {
 }
 
 .popup-slider {
-    width: 80%;
+  width: 80%;
 }
 
 .popup-options {
@@ -172,30 +174,36 @@ main {
   border: 0;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .joke {
     flex-direction: column;
   }
+  
   .joke-text {
     font-size: 16px;
-
   }
+  
   .joke-options {
     margin-top: 15px;
   }
-  .joke-options button{
+  
+  .joke-options button {
     margin: 5px 0;
   }
+  
   .stored__joke {
     flex-direction: column;
   }
+  
   .stored__joke-text {
     font-size: 16px;
   }
+  
   .stored__joke-rating {
     font-size: 14px;
     margin-top: 3px;
   }
+
   .stored__joke-remove {
     width: 100%;
     margin-top: 10px;

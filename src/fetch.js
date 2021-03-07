@@ -10,7 +10,7 @@ async function fetchJoke() {
 
         if (!response.ok)
             throw new Error();
-        
+
         const joke = await response.json();
         return joke;
     } catch (err) {

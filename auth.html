@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="auth.css" />
-    <title>Authentificating...</title>
+    <link rel="stylesheet" href="css/auth.css" />
+    <title>Authenticating...</title>
   </head>
   <body>
     <section class="register form-wrap">
@@ -19,7 +19,12 @@
         <div class="form-inputs">
           <div class="form-option">
             <label for="register-username" class="form-label">USERNAME</label>
-            <input name="register-username" required minlength="5" maxlength="10" />
+            <input
+              name="register-username"
+              required
+              minlength="5"
+              maxlength="10"
+            />
           </div>
           <div class="form-option">
             <label for="register-password" class="form-label">PASSWORD</label>
@@ -47,17 +52,30 @@
     <section class="login form-wrap">
       <article class="motivation">
         <h2 class="motivation-title">Log in</h2>
-        <p class="motivation-paragraph">You need to log in before continuing.</p>
+        <p class="motivation-paragraph">
+          You need to log in before continuing.
+        </p>
       </article>
       <form class="login-form form">
         <div class="form-options">
           <div class="form-option">
             <label for="login-username" class="form-label">USERNAME</label>
-            <input name="login-username" required minlength="5" maxlength="10" />
+            <input
+              name="login-username"
+              required
+              minlength="5"
+              maxlength="10"
+            />
           </div>
           <div class="form-option">
             <label for="login-password" class="form-label">PASSWORD</label>
-            <input type="password" name="login-password" required minlength="5" maxlength="10" />
+            <input
+              type="password"
+              name="login-password"
+              required
+              minlength="5"
+              maxlength="10"
+            />
           </div>
           <div class="form-errors" id="login-errors"></div>
         </div>
