@@ -2,6 +2,23 @@
   font-family: "Source Sans Pro", sans-serif;
   list-style: none;
   margin: 0;
+  box-sizing: border-box;
+}
+
+p {
+  display: inline-block;
+}
+
+.background__dim {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    background: #000;
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 nav {
@@ -31,34 +48,126 @@ main {
 }
 
 .joke {
-    display: flex;
-    max-width: 900px;
-    margin: auto;
-    height: 100px;
-    background: #eeaa0022;
-    padding: 20px;
-    margin-top: 100px;
-    border: 5px solid #ea0;
-  }
-  
-  .joke-text {
-    flex-grow: 4;
-    font-size: 20px;
-    max-width: 500px;
-    align-self: center;
-  }
-  
-  .joke-options {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  
-  .joke-options button {
-      height: 30px;
-      color: white;
-      font-weight: 500;
-      background: #fc3;
-      border: 0;
-  }
+  display: flex;
+  width: 900px;
+  margin: auto;
+  min-height: 150px;
+  background: #eeaa0022;
+  padding: 20px;
+  margin-top: 100px;
+  border: 5px solid #ea0;
+}
+
+.joke-text {
+  flex: 4;
+  font-size: 20px;
+  align-self: center;
+  padding-right: 20px;
+}
+
+.joke-options {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.joke-options button {
+  height: 30px;
+  color: white;
+  font-weight: 500;
+  background: #fc3;
+  border: 0;
+}
+
+.stored__jokes {
+  display: none;
+  flex-direction: column;
+  margin: auto;
+  width: 900px;
+}
+
+.stored__jokes-title {
+  margin: 20px 0;
+}
+
+.stored__joke {
+  display: flex;
+  margin: 15px 0;
+  min-height: 120px;
+  background: #eeaa0022;
+  border: 3px solid #ea0;
+  padding: 20px;
+}
+
+.stored__joke-info {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.stored__joke-remove {
+  flex: 1;
+  height: 40px;
+  border: 0;
+  background: #e50;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  align-self: center;
+}
+
+.stored__joke-id {
+  color: #aaa;
+  font-weight: 500;
+}
+
+.stored__joke-text {
+  font-size: 18px;
+  padding-right: 50px;
+  margin-top: 4px;
+}
+
+.popup {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -60px;
+  z-index: 3;
+  padding: 10px;
+  background: #fc3;
+}
+
+.popup-title {
+  font-size: 20px;
+  text-align: center;
+}
+
+.popup-slider {
+    width: 80%;
+}
+
+.popup-options {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-button {
+  margin: 5px 0;
+  width: 70%;
+  justify-self: center;
+  background: #ea0;
+  height: 30px;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  border: 0;
+}
