@@ -1,121 +1,74 @@
-let storedJokes = JSON.parse(localStorage.getItem("jokes"));
-if (storedJokes === null) localStorage.setItem("jokes", JSON.stringify([]));
-
-function nextJoke() {
-    fetch("https://icanhazdadjoke.com/",
-        {
-            method: "GET",
-            headers: {
-                "Accept": "application/json"
-            }
-        })
-        .then((response) => {
-            if (!response.ok) throw new Error(response.statusText);
-            else return response.json();
-        })
-        .then(changeJoke)
-        .catch((err) => {
-            console.log(err);
-        })
-}
-
-nextJoke();
-
-function showSavedSection() {
-    document.querySelector(".joke").style.display = "none";
-    document.querySelector(".stored__jokes").style.display = "flex";
-}
-
-function showJokesSection() {
-    document.querySelector(".joke").style.display = "flex";
-    document.querySelector(".stored__jokes").style.display = "none";
-}
-
-
-function changeJoke(joke) {
+async function nextJoke() {
+    let joke = await fetchJoke();
     localStorage.setItem("currentJoke", JSON.stringify(joke));
     document.querySelector(".joke-text").innerHTML = joke.joke;
 }
 
-document.querySelector("#joke-save").addEventListener("click", () => {
-    document.querySelector(".background__dim").style.display = "block";
-    updateRating();
-    document.querySelector(".popup--rating").style.display = "flex";
-})
+nextJoke();
 
 function updateRating() {
     let rating = document.querySelector("input[name='rating']").value;
     document.querySelector(".popup-title--rating").innerHTML = `Rate joke: (${rating})`;
 }
 
-function hideSavePopup() {
-    document.querySelector(".background__dim").style.display = "none";
-    document.querySelector(".popup--rating").style.display = "none";
+async function saveJokeAction() {
+    try {
+        let rating = await getRating();
+        saveJoke(rating);
+        nextJoke();
+    } catch (e) { }
 }
 
-
-function saveJoke() {
-    document.querySelector(".popup--rating").style.display = "none";
-    let rating = document.querySelector("input[name='rating']").value;
-
-    let savedJoke = JSON.parse(localStorage.getItem("currentJoke"));
-    savedJoke.rating = rating;
-
-    storedJokes.push(savedJoke);
-    storedJokes.sort((x, y) => x.rating > y.rating ? 1 : -1);
-    localStorage.setItem("jokes", JSON.stringify(storedJokes));
-
-    nextJoke();
-    hideSavePopup();
-}
-
-function showSavedJokes() {
-    let jokesContainer = document.querySelector(".stored__jokes");
+function listSavedJokes() {
+    let jokesContainer = document.querySelector(".stored__jokes-container");
+    jokesContainer.innerHTML="";
 
     for (joke of storedJokes) {
-        let jokeDiv = document.createElement("article");
-        jokeDiv.classList.add("stored__joke");
-        jokeDiv.classList.add(joke.id);
-        let jokeInfo = document.createElement("div");
-        jokeInfo.classList.add("stored__joke-info");
-        let jokeText = document.createElement("p");
-        jokeText.innerHTML = joke.joke;
-        jokeText.classList.add("stored__joke-text");
-        let jokeRating = document.createElement("p");
-        jokeRating.innerHTML = "Rating: " + joke.rating;
-        jokeRating.classList.add("stored__joke-rating");
-        let jokeId = document.createElement("p");
-        jokeId.innerHTML = joke.id;
-        jokeId.classList.add("stored__joke-id");
-        let removeButton = document.createElement("button");
-        removeButton.innerHTML = "Remove joke";
-        removeButton.classList.add("stored__joke-remove");
-        removeButton.classList.add(joke.id);
-
-        removeButton.addEventListener("click", (e) =>removeJoke(e));
-
-        jokeInfo.appendChild(jokeId);
-        jokeInfo.appendChild(jokeText);
-        jokeInfo.appendChild(jokeRating);
-
-        jokeDiv.appendChild(jokeInfo);
-        jokeDiv.appendChild(removeButton);
-
-        jokesContainer.appendChild(jokeDiv);
+        let jokeArticle = createJokeArticle(joke);
+        jokesContainer.appendChild(jokeArticle);
     }
 }
 
-showSavedJokes();
-
-function removeJoke(event) {
+async function removeJokeAction(event) {
     let jokeId = event.target.classList[1];
-
-    let jokeIndex = storedJokes.findIndex((joke) => joke.id === jokeId);
-    console.log(jokeId);
-    storedJokes.splice(jokeIndex, 1);
-    localStorage.setItem("jokes", JSON.stringify(storedJokes));
+    let userConfirmed = await confirmDeletePopup();
+    if (!userConfirmed) return;
+    removeJoke(jokeId);
+    document.querySelector('.'+event.target.classList[1]).style.display="none";
 }
+
 
 function logOff() {
     localStorage.clear();
+}
+
+async function confirmDeletePopup(){
+    return new Promise((resolve, reject) => {
+        showPopup(document.querySelector(".popup--deletion"));
+        document.querySelector("#joke-confirm__deletion--popup").addEventListener("click", () => {
+            hidePopup(document.querySelector(".popup--deletion"));
+            resolve(true);
+        })
+
+        document.querySelector("#joke-cancel__deletion--popup").addEventListener("click", () => {
+            hidePopup(document.querySelector(".popup--deletion"));
+            resolve(false);
+        })
+    })
+}
+
+async function getRating() {
+    return new Promise((resolve, reject) => {
+        showPopup(document.querySelector(".popup--rating"));
+
+        document.querySelector("#joke-save--popup").addEventListener("click", () => {
+            hidePopup(document.querySelector(".popup--rating"));
+            resolve(document.querySelector("input[name='rating']").value);
+        })
+
+        document.querySelector("#joke-cancel--popup").addEventListener("click", () => {
+            hidePopup(document.querySelector(".popup--rating"));
+            reject();
+        })
+    })
 }

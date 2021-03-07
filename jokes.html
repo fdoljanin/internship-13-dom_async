@@ -21,28 +21,43 @@
         <p class="joke-text"></p>
         <div class="joke-options">
           <button id="joke-next" onclick="nextJoke()">Next joke</button>
-          <button id="joke-save">Save joke</button>
+          <button id="joke-save" onclick="saveJokeAction()">Save joke</button>
         </div>
       </section>
       <section class="popup popup--rating">
         <h4 class="popup-title popup-title--rating"></h4>
-        <input name="rating" type="range" min="1" max="10" onchange="updateRating()">
+        <input
+          name="rating"
+          type="range"
+          min="1"
+          max="10"
+          onchange="updateRating()"
+        />
         <div class="popup-options">
-            <button class="popup-button" onclick="saveJoke()">Save</button>
-            <button class="popup-button" onclick="hideSavePopup()">Cancel</button>
+          <button class="popup-button" id="joke-save--popup">Save</button>
+          <button class="popup-button" id="joke-cancel--popup">Cancel</button>
         </div>
       </section>
       <section class="stored__jokes">
         <h2 class="stored__jokes-title">Jokes you saved:</h2>
+        <div class="stored__jokes-container"></div>
       </section>
-      <section class="delete__box rating__box">
-        <h4 class="delete__box-title rating__box-title">Confirm deletion</h4>
-        <div class="rating__box-options delete__box-options">
-            <button class="rating__box-button" onclick="deleteJoke()">Delete</button>
-            <button class="rating__box-button" onclick="hideDeletePopup()">Cancel</button>
+      <section class="popup popup--deletion" style="display: none">
+        <h4 class="popup-title">Confirm deletion</h4>
+        <div class="popup-options">
+          <button class="popup-button" id="joke-confirm__deletion--popup">
+            Delete
+          </button>
+          <button class="popup-button" id="joke-cancel__deletion--popup">
+            Cancel
+          </button>
         </div>
       </section>
     </main>
+    <script src="src/storage.js"></script>
+    <script src="src/elementCreator.js"></script>
+    <script src="src/fetch.js"></script>
+    <script src="src/visualHelper.js"></script>
     <script src="jokes.js"></script>
   </body>
 </html>
